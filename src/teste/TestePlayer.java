@@ -11,4 +11,10 @@ package teste;
  */
 public class TestePlayer {
     
+    public static void main(String ... args){
+        
+        
+       
+    }
+    
 }

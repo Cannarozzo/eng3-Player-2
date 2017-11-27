@@ -1,4 +1,3 @@
-
 package player;
 
 import flywight.media.Media;
@@ -8,35 +7,43 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlayList {
+
     private String name;
     private List<Media> medias;
     private Media currentMedia;
-    
-    public PlayList(int name){
+
+    public PlayList(int name) {
         medias = new ArrayList<>();
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public void showMedias(){
-       
+
+    public void showMedias() {
+        System.out.println("PlayList de Som: ");
+        medias.stream().
+                filter(midia -> midia.getClass().getSimpleName().equals("Audio")).
+                forEach(midia -> System.out.println(midia));
+        System.out.println("PlayList de Video: ");
+        medias.stream().
+                filter(midia -> midia.getClass().getSimpleName().equals("Video")).
+                forEach(midia -> System.out.println(midia));
     }
-    
-    public void newMedia(Media media){
-    
+
+    public void newMedia(Media media) {
+
     }
-    
-    public Media selectMedia(String name){
+
+    public Media selectMedia(String name) {
         return null;
-    } 
-    
-    public Media randomSelect(){
+    }
+
+    public Media randomSelect() {
         return null;
     }
-    
-    public void showMenu(){
+
+    public void showMenu() {
         Scanner in = new Scanner(System.in);
         String nome, artista;
         int opc, duracao;
@@ -66,20 +73,20 @@ public class PlayList {
                     break;
                 case 5:
                     randomSelect();
-                    break;  
+                    break;
                 case 6:
                     System.out.print("Nome: ");
-		    in.nextLine();
-         	    nome = in.nextLine();
+                    in.nextLine();
+                    nome = in.nextLine();
                     System.out.print("Artista: ");
-		    in.nextLine();
-         	    artista = in.nextLine();
+                    in.nextLine();
+                    artista = in.nextLine();
                     System.out.print("Duracao: ");
-		    in.nextLine();
-         	    duracao = in.nextInt();
+                    in.nextLine();
+                    duracao = in.nextInt();
                     Media m = new Audio(nome, artista, duracao);
                     m.play();
-                    break;    
+                    break;
                 case 0:
                     break;
                 default:
