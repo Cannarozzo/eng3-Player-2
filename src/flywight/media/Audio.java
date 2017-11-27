@@ -1,5 +1,5 @@
 
-package player;
+package flywight.media;
 
 public class Audio extends Media{
 

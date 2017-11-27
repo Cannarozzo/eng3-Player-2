@@ -1,5 +1,5 @@
 
-package player;
+package flywight.media;
 
 public abstract class Media {
     private String name;

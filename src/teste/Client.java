@@ -1,6 +1,7 @@
-package player;
+package teste;
 
 import java.util.Scanner;
+import player.Player;
 
 public class Client {
 
