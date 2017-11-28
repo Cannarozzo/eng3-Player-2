@@ -30,4 +30,12 @@ public class Audio extends Media{
         }
         return getName().equals(other.getName());
     }
+    
+    
+    public static void main(String ... args){
+        Audio audio = new Audio("foo","foo",0);
+        Audio audio2 = new Audio("foo","foo",0);
+        
+        System.out.println(audio.equals(audio2));
+    }
 }

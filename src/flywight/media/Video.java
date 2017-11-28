@@ -31,4 +31,12 @@ public class Video extends Media{
         return getName().equals(other.getName());
     }
     
+    
+    public static void main(String ... args){
+        Video v = new Video("foo","foo",0);
+        Video v2 = new Video("foo","foo", 0);
+        
+        System.out.println(v.equals(v2));
+    }
+    
 }

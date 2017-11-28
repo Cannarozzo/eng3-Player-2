@@ -4,6 +4,7 @@ import flywight.media.Media;
 import flywight.media.Audio;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class PlayList {
@@ -12,8 +13,9 @@ public class PlayList {
     private List<Media> medias;
     private Media currentMedia;
 
-    public PlayList(int name) {
+    public PlayList(String name) {
         medias = new ArrayList<>();
+        this.name = name;
     }
 
     public String getName() {
@@ -24,23 +26,34 @@ public class PlayList {
         System.out.println("PlayList de Som: ");
         medias.stream().
                 filter(midia -> midia.getClass().getSimpleName().equals("Audio")).
-                forEach(midia -> System.out.println(midia));
+                forEach(midia -> System.out.println("\t" + midia));
         System.out.println("PlayList de Video: ");
         medias.stream().
                 filter(midia -> midia.getClass().getSimpleName().equals("Video")).
-                forEach(midia -> System.out.println(midia));
+                forEach(midia -> System.out.println("\t" + midia));
+        System.out.println("");
+        
     }
 
     public void newMedia(Media media) {
-
+        medias.add(media);
     }
 
     public Media selectMedia(String name) {
+        for (Media m : medias) {
+            if (m.equals(name)) {
+                return m;
+            }
+        }
+        System.out.println("Midia não encontrada");
         return null;
     }
 
     public Media randomSelect() {
-        return null;
+        System.out.println("Selecionando uma mídia de forma randômica");
+        Random r = new Random();
+        Media midia = medias.get(r.nextInt(medias.size()));
+        return midia;
     }
 
     public void showMenu() {
