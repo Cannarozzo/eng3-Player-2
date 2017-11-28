@@ -38,10 +38,12 @@ public class PlayList {
     public void newMedia(Media media) {
         medias.add(media);
     }
-
+    
+    //sobreCarga possível
     public Media selectMedia(String name) {
         for (Media m : medias) {
-            if (m.equals(name)) {
+            if (m.getName().equals(name)) {
+                this.currentMedia = m;
                 return m;
             }
         }
@@ -53,6 +55,7 @@ public class PlayList {
         System.out.println("Selecionando uma mídia de forma randômica");
         Random r = new Random();
         Media midia = medias.get(r.nextInt(medias.size()));
+        this.currentMedia = midia;
         return midia;
     }
 
@@ -75,30 +78,24 @@ public class PlayList {
                 case 1:
                     showMedias();
                     break;
-                case 2:
-                    newMedia(currentMedia);
+                case 2:                    
+                    System.out.println("AÚDIO: Digite o nome da midia, artista a duração: ");
+                    newMedia(new Audio(in.next(), in.next(), in.nextInt()));
                     break;
                 case 3:
-                    newMedia(currentMedia);
+                    System.out.println("VÌDEO: Digite o nome da midia, artista a duração : ");
+                    newMedia(new Audio(in.next(), in.next(), in.nextInt()));
                     break;
                 case 4:
-                    selectMedia(name);
+                    System.out.println("Digite o nome da midia: "); // pleonasmo?
+                    currentMedia = selectMedia(in.next());
                     break;
                 case 5:
-                    randomSelect();
+                    currentMedia = randomSelect();
+                    System.out.println(currentMedia);
                     break;
-                case 6:
-                    System.out.print("Nome: ");
-                    in.nextLine();
-                    nome = in.nextLine();
-                    System.out.print("Artista: ");
-                    in.nextLine();
-                    artista = in.nextLine();
-                    System.out.print("Duracao: ");
-                    in.nextLine();
-                    duracao = in.nextInt();
-                    Media m = new Audio(nome, artista, duracao);
-                    m.play();
+                case 6:                   
+                    currentMedia.play();
                     break;
                 case 0:
                     break;

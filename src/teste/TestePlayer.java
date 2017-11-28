@@ -18,7 +18,7 @@ public class TestePlayer {
     
     public static void main(String ... args){
         
-        Audio audio1 = new Audio("foo","foo",2);
+        Audio audio1 = new Audio("fooAudio","fooAudio",2);
         Video video1 = new Video("fooVideo","barVideo",2);
         
         
@@ -30,7 +30,7 @@ public class TestePlayer {
         pl.showMedias();
         System.out.println("\t" + pl.randomSelect());
         
-        System.out.println(pl.selectMedia("fooVideo"));
+        System.out.println(pl.selectMedia("fooAudio"));
         
         
        
