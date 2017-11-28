@@ -6,7 +6,6 @@
 package teste;
 
 import flywight.media.Audio;
-import flywight.media.Media;
 import flywight.media.Video;
 import player.PlayList;
 
@@ -14,10 +13,10 @@ import player.PlayList;
  *
  * @author lab7
  */
-public class TestePlayer {
+public class TestePlayList {
     
     public static void main(String ... args){
-        
+        /*
         Audio audio1 = new Audio("fooAudio","fooAudio",2);
         Video video1 = new Video("fooVideo","barVideo",2);
         
@@ -32,6 +31,9 @@ public class TestePlayer {
         
         System.out.println(pl.selectMedia("fooAudio"));
         
+        */
+        PlayList pl = new PlayList("felipeRock");
+        pl.showMenu();
         
        
     }

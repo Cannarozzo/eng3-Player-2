@@ -2,6 +2,7 @@ package player;
 
 import flywight.media.Media;
 import flywight.media.Audio;
+import flywight.media.Video;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,12 +26,12 @@ public class PlayList {
     public void showMedias() {
         System.out.println("PlayList de Som: ");
         medias.stream().
-                filter(midia -> midia.getClass().getSimpleName().equals("Audio")).
-                forEach(midia -> System.out.println("\t" + midia));
+                filter(media -> media instanceof Audio).
+                forEach(media -> System.out.println("\t" + media));
         System.out.println("PlayList de Video: ");
         medias.stream().
-                filter(midia -> midia.getClass().getSimpleName().equals("Video")).
-                forEach(midia -> System.out.println("\t" + midia));
+                filter(media -> media instanceof Video).
+                forEach(media -> System.out.println("\t" + media));
         System.out.println("");
         
     }
@@ -71,8 +72,9 @@ public class PlayList {
             System.out.println("5-Escolher uma mídia aleatoriamente");
             System.out.println("6-Tocar uma mídia");
             System.out.println("0-Voltar ao menu principal");
-            System.out.println("Selecione: ");
+            System.out.print("Selecione: ");
             opc = in.nextInt();
+            System.out.println("");
 
             switch (opc) {
                 case 1:
@@ -84,7 +86,7 @@ public class PlayList {
                     break;
                 case 3:
                     System.out.println("VÌDEO: Digite o nome da midia, artista a duração : ");
-                    newMedia(new Audio(in.next(), in.next(), in.nextInt()));
+                    newMedia(new Video(in.next(), in.next(), in.nextInt()));
                     break;
                 case 4:
                     System.out.println("Digite o nome da midia: "); // pleonasmo?
