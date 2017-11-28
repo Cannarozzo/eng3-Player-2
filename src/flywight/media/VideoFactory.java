@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class VideoFactory {
 
-    private Map<String, Video> videoPool;
+    public Map<String, Video> videoPool;
     private static VideoFactory instance = null;
 
     private VideoFactory() {
@@ -23,7 +23,7 @@ public class VideoFactory {
     public Video getVideo(String name, String artist, int duration) {
         Video video = new Video(name, artist, duration);
         if (videoPool.containsValue(video)) {
-            return videoPool.get(video);
+            return videoPool.get(video.getName());
         }
 
         videoPool.put(video.getName(), video);
@@ -33,7 +33,7 @@ public class VideoFactory {
     public Video getVideo(Video video) {
         if (videoPool.containsValue(video)) {
             System.out.println("retornando objeto vídeo");
-            return videoPool.get(video);
+            return videoPool.get(video.getName());
         }
 
         System.out.println("Criando objeto video");

@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class PlayList {
 
-    AudioFactory audioFactory;
-    VideoFactory videoFactory ;
+    private AudioFactory audioFactory = AudioFactory.getInstance();
+    private VideoFactory videoFactory = VideoFactory.getInstance();
     
     private String name;
     private List<Media> medias;
@@ -41,8 +41,17 @@ public class PlayList {
 
     }
 
+    // Criar uma MediaFactory para generalizar a estrutura
     public void newMedia(Media media) {
-        medias.add(media);
+        if(media instanceof Audio){
+            Audio audio = (Audio)media;
+            medias.add(audioFactory.getAudio(audio));
+        }
+        if(media instanceof Video){
+            Video video = (Video)media;
+            medias.add(videoFactory.getVideo(video));
+        }
+        
     }
 
     //sobreCarga possível
@@ -111,6 +120,14 @@ public class PlayList {
                     System.out.println("");
                     break;
                 case 7:
+                    break;
+                case 8:
+                    for(Audio u : audioFactory.audioPool.values()){
+                        System.out.println(u);
+                    }
+                    for(Video f : videoFactory.videoPool.values()){
+                        System.out.println(f);
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida!");

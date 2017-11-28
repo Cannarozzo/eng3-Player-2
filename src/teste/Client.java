@@ -1,15 +1,18 @@
 package teste;
 
-
+import flywight.media.AudioFactory;
+import flywight.media.VideoFactory;
 import java.util.Scanner;
 import player.PlayList;
 import player.Player;
 
 public class Client {
 
-    public static void main(String[] args) {       
+    public static void main(String[] args) {
+
+     
         Player p = new Player();
-        
+
         Scanner in = new Scanner(System.in);
 
         int opc;
@@ -29,16 +32,16 @@ public class Client {
                     break;
                 case 2:
                     System.out.print("Nome : ");
-		    in.nextLine();
-         	    nome = in.nextLine();
+                    in.nextLine();
+                    nome = in.nextLine();
                     p.newPlayList(nome);
                     break;
                 case 3:
                     System.out.print("Nome: ");
-		    in.nextLine();
-         	    nome = in.nextLine();
+                    in.nextLine();
+                    nome = in.nextLine();
                     PlayList playList = p.selectPlayList(nome);
-                    if(playList == null){
+                    if (playList == null) {
                         System.out.println("Digite uma playlist válida!");
                         break;
                     }

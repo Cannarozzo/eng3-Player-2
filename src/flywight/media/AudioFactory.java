@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class AudioFactory {
 
-    private Map<String, Audio> audioPool;
+    public Map<String, Audio> audioPool;
     private static AudioFactory instance = null;
 
     private AudioFactory() {
