@@ -2,7 +2,9 @@ package player;
 
 import flywight.media.Media;
 import flywight.media.Audio;
+import flywight.media.AudioFactory;
 import flywight.media.Video;
+import flywight.media.VideoFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,6 +12,9 @@ import java.util.Scanner;
 
 public class PlayList {
 
+    AudioFactory audioFactory;
+    VideoFactory videoFactory ;
+    
     private String name;
     private List<Media> medias;
     private Media currentMedia;
@@ -33,13 +38,13 @@ public class PlayList {
                 filter(media -> media instanceof Video).
                 forEach(media -> System.out.println("\t" + media));
         System.out.println("");
-        
+
     }
 
     public void newMedia(Media media) {
         medias.add(media);
     }
-    
+
     //sobreCarga possível
     public Media selectMedia(String name) {
         for (Media m : medias) {
@@ -62,8 +67,7 @@ public class PlayList {
 
     public void showMenu() {
         Scanner in = new Scanner(System.in);
-        String nome, artista;
-        int opc, duracao;
+        int opc;
         do {
             System.out.println("1-Mostrar mídias");
             System.out.println("2-Adicionar áudio");
@@ -71,7 +75,7 @@ public class PlayList {
             System.out.println("4-Selecionar mídia");
             System.out.println("5-Escolher uma mídia aleatoriamente");
             System.out.println("6-Tocar uma mídia");
-            System.out.println("0-Voltar ao menu principal");
+            System.out.println("7-Voltar ao menu principal");
             System.out.print("Selecione: ");
             opc = in.nextInt();
             System.out.println("");
@@ -80,7 +84,7 @@ public class PlayList {
                 case 1:
                     showMedias();
                     break;
-                case 2:                    
+                case 2:
                     System.out.println("AÚDIO: Digite o nome da midia, artista a duração: ");
                     newMedia(new Audio(in.next(), in.next(), in.nextInt()));
                     break;
@@ -96,16 +100,29 @@ public class PlayList {
                     currentMedia = randomSelect();
                     System.out.println(currentMedia);
                     break;
-                case 6:                   
+                case 6:
+                    if (currentMedia == null) {
+                        System.out.println("Nenhuma media selecionada! "
+                                + "por favor selecione uma media.");
+                        System.out.println("");
+                        break;
+                    }
                     currentMedia.play();
+                    System.out.println("");
                     break;
-                case 0:
+                case 7:
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
 
-        } while (opc != 0);
-        in.close();
+        } while (opc != 7);
+        // in.close();
     }
+
+    @Override
+    public String toString() {
+        return "PlayList{" + "name=" + name + '}';
+    }
+
 }

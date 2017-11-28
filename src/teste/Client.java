@@ -1,13 +1,15 @@
 package teste;
 
+
 import java.util.Scanner;
+import player.PlayList;
 import player.Player;
 
 public class Client {
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) {       
         Player p = new Player();
+        
         Scanner in = new Scanner(System.in);
 
         int opc;
@@ -17,15 +19,16 @@ public class Client {
             System.out.println("2-Nova playlist");
             System.out.println("3-Selecionar playlist");
             System.out.println("0-Sair do programa");
-            System.out.println("Selecione: ");
+            System.out.print("Selecione: ");
             opc = in.nextInt();
+            System.out.println("");
 
             switch (opc) {
                 case 1:
                     p.showPlayLists();
                     break;
                 case 2:
-                    System.out.print("Nome: ");
+                    System.out.print("Nome : ");
 		    in.nextLine();
          	    nome = in.nextLine();
                     p.newPlayList(nome);
@@ -34,7 +37,12 @@ public class Client {
                     System.out.print("Nome: ");
 		    in.nextLine();
          	    nome = in.nextLine();
-                    p.selectPlayList(nome);
+                    PlayList playList = p.selectPlayList(nome);
+                    if(playList == null){
+                        System.out.println("Digite uma playlist válida!");
+                        break;
+                    }
+                    playList.showMenu();
                     break;
                 case 0:
                     break;

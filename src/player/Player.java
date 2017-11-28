@@ -2,7 +2,7 @@ package player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Player {
 
@@ -14,20 +14,24 @@ public class Player {
 
     public void showPlayLists() {
         for(PlayList pl : playLists){
-           
+            System.out.println("Lista de PlayLists: ");
+            System.out.println("\t" + pl);
         }
+        System.out.println("");
     }
 
     public void newPlayList(String name) {
-        /*playLists.add(name);*/
+        playLists.add(new PlayList(name));
     }
 
-    public PlayList selectPlayList(String name) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Nome: ");
-        in.nextLine();
-        name = in.nextLine();
+    public PlayList selectPlayList(String name) {       
+        for(PlayList pl : playLists){
+            if(pl.getName().equals(name)){
+                return pl;
+            }
+        }
         
+        System.out.println("Não existe nenhuma playlist com este nome");
         return null;
     }
 }
